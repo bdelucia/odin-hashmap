@@ -1,6 +1,6 @@
 export function HashMap() {
   let loadFactor = 0.75;
-  let capacity = 16;
+  let capacity = 12;
   let size = 0;
   let buckets = [];
 
@@ -55,6 +55,16 @@ export function HashMap() {
       }
 
       return this.buckets[index] ? this.buckets[index].value : null;
+    },
+    has(key) {
+      let hashCode = this.hash(key);
+      let index = hashCode % capacity;
+
+      if (!this.buckets) {
+        return false;
+      }
+
+      return this.buckets[index] ? true : false;
     },
     remove(key) {
       let hashCode = this.hash(key);

@@ -16,3 +16,17 @@ test.set('kite', 'pink');
 test.set('lion', 'golden');
 
 console.log(test.entries());
+test.set('apple', 'green');
+console.log(test.entries());
+test.set('orange', 'orange');
+console.log(test.entries());
+console.log(test.get('apple'));
+console.log(test.has('apple'));
+test.remove('apple');
+console.log(test.get('apple'));
+console.log(test.has('apple'));
+console.log('Entries: ', test.entries());
+console.log('Length: ', test.length());
+console.log('Keys: ', test.keys());
+console.log('Values: ', test.values());
+console.log('Entries: ', test.entries());
