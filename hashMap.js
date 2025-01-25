@@ -1,7 +1,21 @@
-function HashMap() {
+export function HashMap() {
   let loadFactor = 0.75;
   let capacity = 16;
+  let size = 0;
   let buckets = [];
+
+  function resize() {
+    let oldBuckets = buckets;
+    capacity *= 2;
+    buckets = [];
+    size = 0;
+
+    for (let i = 0; i < oldBuckets.length; i++) {
+      if (oldBuckets[i]) {
+        this.set(oldBuckets[i].key, oldBuckets[i].value);
+      }
+    }
+  }
 
   return {
     hash(key) {
@@ -26,6 +40,11 @@ function HashMap() {
       }
 
       this.buckets[index] = { key: key, value: value };
+      size++;
+
+      if (size / capacity > loadFactor) {
+        resize.call(this);
+      }
     },
     get(key) {
       let hashCode = this.hash(key);
@@ -46,6 +65,7 @@ function HashMap() {
       }
 
       this.buckets[index] = null;
+      size--;
     },
     length() {
       let count = 0;
@@ -58,6 +78,7 @@ function HashMap() {
     },
     clear() {
       this.buckets = [];
+      size = 0;
     },
     keys() {
       let keys = [];
