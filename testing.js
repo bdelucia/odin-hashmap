@@ -30,3 +30,5 @@ console.log('Length: ', test.length());
 console.log('Keys: ', test.keys());
 console.log('Values: ', test.values());
 console.log('Entries: ', test.entries());
+test.clear();
+console.log('After clear(): ', test.entries());
